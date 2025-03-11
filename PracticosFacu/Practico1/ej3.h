@@ -26,4 +26,6 @@ class Fecha{
     int getMes();
 
     int getDia();
+
+    
 }
