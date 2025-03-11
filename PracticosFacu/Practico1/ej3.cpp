@@ -1,41 +1,28 @@
-#include <iostream>
+#include <ej3.h>
 #include <cmath>
-
-
-
-
 //asumimos meses de 30 dias y años de 365 dias
 
-class Fecha{
-
-    private:
-
-        int dia, mes, anio;
-
-
-    public:
-
-    Fecha avanzar(Fecha fecha, int cantidad){
-        int anio = fecha->anio;
-        int mes = fecha->mes;
-        int dia = fecha->dia;
-        /*if ((anio % 4 == 0) && (anio % 100 != 0) || (anio % 400 == 0)){
-            if (mes == 2){
-
-            }
-
-        }*/
+    Fecha avanzar(int cantidad){
+        int anio = this->anio;
+        int mes = this->mes;
+        int dia = this->dia;
+        int res_dia = ((dia + cantidad)%30);
+        int res_mes = ((dia + cantidad)/30 + mes)%12;
+        int res_anio = (((dia + cantidad)/30 + mes)/12) + anio;
+        this->anio = res_anio;
+        this->mes = res_mes;
+        this->dia = res_dia;
     }
 
-    bool comparacion(Fecha f1, Fecha f2){
-        return ( (f1->anio == f2->anio) && (f1->mes == f2->mes) && (f1->dia == f2->dia) );
+    bool comparacion(Fecha f2){
+        return ((this->anio == f2.getAnio()) && (this->mes == f2.getMes()) && (this->dia == f2.getDia()));
     }
 
-    int diferencia(Fecha f1, Fecha f2){
+    int diferencia(Fecha f2){
         int dif = 0;
-        dif += abs(f1->anio - f2->anio)*365;
-        dif += abs(f1->mes - f2->mes)*30;
-        dif += abs(f1->dia - f2->dia);
+        dif += abs(this->anio - f2.getAnio())*365;
+        dif += abs(this->mes - f2.getMes())*30;
+        dif += abs(this->dia - f2.getDia());
         return dif;
     }
 
@@ -43,6 +30,12 @@ class Fecha{
         int anio = this->anio;
         int mes = this->mes;
         int dia = this->dia;
+        int res_dia = ((dia - cantidad)%30);
+        int res_mes = ((dia - cantidad)/30 + mes)%12;
+        int res_anio = (((dia - cantidad)/30 + mes)/12) + anio;
+        this->anio = res_anio;
+        this->mes = res_mes;
+        this->dia = res_dia;
 
     }
 
@@ -51,5 +44,15 @@ class Fecha{
         this->mes = mes;
         this->anio = año;
     }
-}
 
+
+    int getAnio(){
+        return this->anio;
+    }    
+    int getMes(){
+        return this->mes;
+    }
+
+    int getDia(){
+        return this->dia;
+    }
