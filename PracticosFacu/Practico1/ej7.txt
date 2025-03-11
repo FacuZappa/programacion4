@@ -1,0 +1,25 @@
+Considerar definidas las clases A, B, C, D y E, que cumplen B <: A, C <: A, D <: B y E <: D. 
+a) Indicar: 
+i) Clase base directa de B 
+ii) Clase base directa de E 
+iii) Subclases indirectas de A 
+iv) Subclases directas de B 
+b) Definir la propiedad subsumption y explicar informalmente su significado. 
+c) Considerando las propiedades de cada clase (atributos, asociaciones, operaciones): 
+¿Qué propiedades tiene la clase A?, ¿Qué propiedades tiene la clase E?
+
+
+//respuestas
+
+a) 
+i) Clase base directa de B es a
+ii) Clase base directa de E es d
+iii) Subclases indirectas de A son D y E 
+iv) La unica subclase directa de B es D 
+
+b)La propiedad de subsumption da la capacidad a una subclase de ser utilizada como si fuera su clase base. Es decir
+  si existe una subclase de A, B (B <: A) un objeto de tipo B puede ser utilizado donde se espera un onjeto de tipo A.
+
+c) La clase A tiene sus propios atributos, relaciones y operaciones, las cuales E hereda por su clase base D que hereda de B que hereda de A,
+   por lo tanto E comparte éstos valores, pero a su vez puede tener otros atributos, asociaciones u operaciones adicionales y puede tener 
+   operaciones redefinidas.

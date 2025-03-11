@@ -1,0 +1,13 @@
+Considerar definidas las clases A, B, C, D y E, que cumplen B <: A, C <: A, D <: B y E <: D. 
+Suponer que A tiene una operación polimórfica g() que se encuentra redefinida en el resto 
+de las clases menos en D y tiene otra operación h() no polimórfica. Discutir qué método se 
+ejecuta dependiendo de la instancia, tipo de despacho y operación invocada. 
+
+//respuesta
+
+Las operaciones polimorficas Despachan de forma dinamica, es decir dependen del tipo dinamico del objeto,
+por ejemplo en C se redefine la funcion g() por lo que para objetos de tipo C se ejecuta C::g(), sin embargo
+en objetos de D que no redefine la funcion, se ejecuta para ese tipo de objetos la funcion correspondiente 
+al tipo de dato del cual hereda la funcion en este caso se ejcutaria B::g().
+Para las operaciones no polimorficas se termina ejecutando siempre la primera definicion de la funcion, ya que 
+se da un despacho estatico, para todos los tipos de datos se ejecutara A::h()

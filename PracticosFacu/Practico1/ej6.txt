@@ -1,0 +1,16 @@
+Considerar definidas las clases A, B y C, las asociaciones R1 entre las clases A y B, y R2 entre 
+las clases B y C. Sean los objetos a, b y c, de clases A, B y C respectivamente. ¿Es posible que 
+existan los siguientes links?  
+a) Un link entre a y b 
+b) Un link entre b y c 
+c) Un link entre a y c 
+d) Dos links entre b y c
+
+
+
+//respuestas
+
+a)es posible
+b)es posible
+c)no es posible
+a)es posible segun la cardinalidad de la asociacion
