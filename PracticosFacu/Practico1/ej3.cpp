@@ -2,7 +2,7 @@
 #include <cmath>
 //asumimos meses de 30 dias y años de 365 dias
 
-    Fecha avanzar(int cantidad){
+    Fecha Fecha::avanzar(int cantidad){
         int anio = this->anio;
         int mes = this->mes;
         int dia = this->dia;
@@ -14,11 +14,11 @@
         this->dia = res_dia;
     }
 
-    bool comparacion(Fecha f2){
+    bool Fecha::comparacion(Fecha f2){
         return ((this->anio == f2.getAnio()) && (this->mes == f2.getMes()) && (this->dia == f2.getDia()));
     }
 
-    int diferencia(Fecha f2){
+    int Fecha::diferencia(Fecha f2){
         int dif = 0;
         dif += abs(this->anio - f2.getAnio())*365;
         dif += abs(this->mes - f2.getMes())*30;
@@ -26,7 +26,7 @@
         return dif;
     }
 
-    Fecha retroceder(int cantidad){
+    Fecha Fecha::retroceder(int cantidad){
         int anio = this->anio;
         int mes = this->mes;
         int dia = this->dia;
@@ -39,20 +39,20 @@
 
     }
 
-    Fecha setFecha(int dia, int mes, int año){
+    Fecha Fecha::setFecha(int dia, int mes, int año){
         this->dia = dia;
         this->mes = mes;
         this->anio = año;
     }
 
 
-    int getAnio(){
+    int Fecha::getAnio(){
         return this->anio;
     }    
-    int getMes(){
+    int Fecha::getMes(){
         return this->mes;
     }
 
-    int getDia(){
+    int Fecha::getDia(){
         return this->dia;
     }
