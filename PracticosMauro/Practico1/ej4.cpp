@@ -1,47 +1,20 @@
-/* Ejercicio 4 *  
-a) Implementar en C++ el datatype String, que represente cadenas de caracteres de 
-largo variable. Debe ser posible obtener un String tanto a partir de una cadena de 
-caracteres (char *) como a partir de otro String. 
-b) Agregar la sobrecarga de los siguientes operadores: 
-− Asignación. 
-− Concatenación (operador +). 
-− Comparación. 
-− Acceso a un caracter del String (operador []). 
- 
-c) Agregar la sobrecarga de los operadores de inserción y extracción de flujo. 
- 
-d) Agregar las siguientes operaciones: 
-− largo, que retorna la cantidad de caracteres de la cadena.  
-− substring, que retorna el substring que se encuentra entre dos posiciones dadas 
-de la cadena (incluyendo los caracteres en dichas posiciones). 
- 
-e) Agregar constructores y destructor según considere necesario. 
- 
-f) Agregar manejo de excepciones de forma que: 
-− Al intentar acceder a una posición del String inválida se lance la excepción 
-“std::out_of_range”. 
-− Al recibir un parámetro inválido en una operación se lance la excepción 
-“std::invalid_argument” */
-
-
-class String {
-    private:
-      char* cadena;
-      unsigned int largo;
-    public:
-      String();
-      String(const char*);
-      String(const String&);
-      String operator=(const String&);
-      String operator+(const String&);
-      bool operator==(const String&);
-      const char& operator[](String) const;
-};
+# include <ostream>
+# include <stdexcept>
+# include "ej4.h"
 
 String::String() : largo (0){
     cadena = new char[1];
-    cadena[1] = '\0';
+    cadena[0] = '\0';
 } 
+
+String::String(int largo){
+    this->largo = largo;
+    cadena = new char[largo +1];
+    for (int i = 0; i < largo; i++)
+       cadena[i] = ' ';
+
+    cadena[largo] = '\0';   
+}
 
 String::String(const char* aCopiar){
     largo = 0;
@@ -54,6 +27,99 @@ String::String(const char* aCopiar){
     }
 }
 
-String::String(const String&){
-
+String::String(const String& aCopiar){
+    largo = aCopiar.largo;
+    cadena = new char[largo+1];
+    for(int i = 0; i <= largo; i++)
+       cadena[i] = aCopiar.cadena[i];
 }
+
+String& String::operator=(const String& aAsignar){
+    if(this != &aAsignar){
+      delete[] cadena;
+      cadena = new char[aAsignar.largo + 1];
+      largo = aAsignar.largo;
+      for( int i = 0; i <= largo; i++)
+        cadena[i] = aAsignar.cadena[i];
+    }
+
+    return *this;
+}
+
+String String::operator+(const String& sumando){
+    String suma(largo + sumando.largo);
+
+    for (int i = 0; i < largo; i++)
+       suma.cadena[i] = cadena[i];
+    
+    for(int i = largo; i <= suma.largo; i++)
+       suma.cadena[i] = sumando.cadena[i - largo];
+    
+    return suma;
+}
+
+bool String::operator==(const String& aComparar){
+    if (aComparar.largo != largo)
+      return false;
+    
+    else{
+        int i = 0;
+        while(i <= largo && cadena[i] == aComparar.cadena[i])
+           i++;
+           
+        return i > largo;
+    }
+}
+
+const char& String::operator[](int a) const{
+    if (a < 0 || a >= largo) 
+         throw std::out_of_range("");
+    return cadena[a];
+}
+
+const char* String::getCadena() const{
+    return cadena;
+}
+
+void String::setCadena(const std::string& nuevaCadena){
+    delete[] cadena;
+    largo = nuevaCadena.size();
+    cadena = new char[largo + 1];
+    for (unsigned int i = 0; i < largo; i++) {
+        cadena[i] = nuevaCadena[i];
+    }
+    cadena[largo] = '\0';
+}
+
+int String::totalcaracteres(){
+    return largo;
+}
+
+String String::substring(int ini, int fin) const{
+    if(ini < 0 || fin < ini || fin > largo)
+       throw std::invalid_argument("");
+
+    String sub(fin - ini + 1);
+    for(int i = ini; i <= fin; i++)
+       sub.cadena[i - ini] = cadena [i];
+
+    return sub;
+}
+
+std::istream& operator>>(std::istream& is, String& pri){
+    std::string entrada;
+    std::getline(is, entrada);
+    pri.setCadena(entrada);
+    return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const String& pri){
+    os << pri.getCadena();
+
+    return os;
+}
+
+String::~String(){
+    delete[] cadena; 
+}
+
