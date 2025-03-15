@@ -10,7 +10,7 @@ class segmento {
         segmento(punto, punto);
 };
 
-
+//lol
 
 class punto {
     private:
