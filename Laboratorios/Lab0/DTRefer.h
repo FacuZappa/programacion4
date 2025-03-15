@@ -1,12 +1,29 @@
 #include <iostream>
 #include <string>
-#include <DTFecha>
+#include <DTFecha.h>
+#include <set>
 
 class DTRefer{
 
     private:
 
-        string DOI, titulo;
+        std::string DOI, titulo;
+
         DTFecha fecha;
-        
+
+        std::set<std::string> autores;
+
+    public:
+
+    DTRefer();
+
+    DTRefer(std::string, std::string, DTFecha, std::set); //constructor por parametros
+
+    std::string getDOI(); //devuelve el codigo DOI de la publicacion referida
+
+    std::string getTitulo();
+
+    DTFecha getFecha();
+
+    std::set getAutores();  //devuelve el set de los autores relacionados a la publicacion
 };
