@@ -2,7 +2,7 @@
 #include <cmath>
 
 
-
+/**/
 String::String(){ 
     this->cadena = char [1]; 
     this->cadena[0] = ´\0´; 
