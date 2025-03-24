@@ -45,3 +45,61 @@ bool Racional::igualdad(Racional r) {
     Racional b = r.simplificar();
     return a.numerador == b.numerador && a.denominador == b.denominador;
 }
+
+Racional Racional::operator+(Racional r) {
+    return this->suma(r);
+}
+
+Racional Racional::operator-(Racional r) {
+    return this->diferencia(r);
+}
+
+Racional Racional::operator*(Racional r) {
+    return this->producto(r);
+}
+
+Racional Racional::operator/(Racional r) {
+    return this->cociente(r);
+}
+
+Racional Racional::operator+(int n) {
+    return this->suma(Racional(n));
+}
+
+Racional Racional::operator-(int n) {
+    return this->diferencia(Racional(n));
+}
+
+Racional Racional::operator*(int n) {
+    return this->producto(Racional(n));
+}
+
+Racional Racional::operator/(int n) {
+    return this->cociente(Racional(n));
+}
+
+bool Racional::operator==(Racional r) {
+    return this->igualdad(r);
+}
+
+bool Racional::operator!=(Racional r) {
+    return !this->igualdad(r);
+}
+
+bool Racional::operator==(int n) {
+    return this->igualdad(Racional(n));
+}
+
+bool Racional::operator!=(int n) {
+    return !this->igualdad(Racional(n));
+}
+
+std::ostream& operator<<(std::ostream& os, Racional r) {
+    os << r.numerador << "/" << r.denominador;
+    return os;
+}
+
+std::istream& operator>>(std::istream& is, Racional& r) {
+    is >> r.numerador >> r.denominador;
+    return is;
+}
